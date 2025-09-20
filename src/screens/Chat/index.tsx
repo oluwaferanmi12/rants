@@ -110,8 +110,8 @@ export default function Chat() {
         bg={Colors.NEUTRAL_300}
         style={{
           borderTopLeftRadius: 16,
-          borderTopRightRadius: 16,
           gap: 8,
+          borderTopRightRadius: 16,
         }}>
         <Container flex={1} bg={Colors.NEUTRAL_100} br="12" p="8 12">
           <Text color={Colors.NEUTRAL_300}>Type a message...</Text>
