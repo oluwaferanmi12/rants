@@ -59,6 +59,11 @@ export const TextVariants = {
     lineHeight: 13,
     fontFamily: 'Lexend-Regular',
   },
+  CAPTION3: {
+    fontSize: 12,
+    lineHeight: 20,
+    fontFamily: 'Lexend-Regular',
+  },
 };
 
 export type StyledTextProps = {

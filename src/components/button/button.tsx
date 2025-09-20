@@ -8,6 +8,7 @@ import {Text, TextVariants} from '../text';
 export enum ButtonTypes {
   PRIMARY = 'primary',
   SECONDARY = 'secondary',
+  SECONDARY_BLANK = 'secondary-blank',
   SOCIAL = 'social',
 }
 
@@ -54,6 +55,8 @@ export const Button = ({
       ? Colors.PRIMARY_900
       : type === ButtonTypes.SECONDARY
       ? Colors.TRANSPARENT
+      : type === ButtonTypes.SECONDARY_BLANK
+      ? Colors.TRANSPARENT
       : type === ButtonTypes.SOCIAL
       ? Colors.NEUTRAL_200
       : Colors.TRANSPARENT};
@@ -63,7 +66,7 @@ export const Button = ({
       ? Colors.NEUTRAL_0
       : bc
       ? `1.5px solid ${bc}`
-      : type === ButtonTypes.SOCIAL
+      : type === ButtonTypes.SOCIAL || type === ButtonTypes.SECONDARY_BLANK
       ? 'none'
       : Colors.PRIMARY_900};
     border-radius: 4px;
@@ -109,7 +112,8 @@ export const Button = ({
                 ? Colors.LINE_DARK
                 : textColor
                 ? textColor
-                : type === ButtonTypes.SECONDARY
+                : type === ButtonTypes.SECONDARY ||
+                  type === ButtonTypes.SECONDARY_BLANK
                 ? Colors.PRIMARY_900
                 : type === ButtonTypes.SOCIAL
                 ? Colors.TEXT_ICON_PRIMARY

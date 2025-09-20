@@ -3,7 +3,7 @@ import React from 'react';
 import {HOME_EVENTS} from '@library';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RouteTypes} from '.';
-import {Box, Chat, Feed, MoreIcon, Tent} from '../../assets';
+import {Chat} from '../../assets';
 import {useTheme} from '../../data';
 import ChatComponent from '../../screens/Chat';
 const Tab = createBottomTabNavigator<RouteTypes.BottomNavParamList>();
