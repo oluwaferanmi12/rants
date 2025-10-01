@@ -25,7 +25,9 @@ const ThemeContext = createContext<ContextValue>({
 });
 
 export const ThemeProvider = memo<Props>(({children}) => {
-  const [theme, setTheme] = useState<AppTheme>(DarkModeColors);
+  const [theme, setTheme] = useState<AppTheme>(
+    LightModeColors as unknown as AppTheme,
+  );
   const ToggleThemeCallback = useCallback(() => {
     setTheme(() => {
       if (theme.TEXT_ICON_PRIMARY !== '#FFFFFF') {

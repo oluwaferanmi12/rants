@@ -39,6 +39,7 @@ type Props = {
   smh?: number | string;
   fw?: 'wrap' | 'nowrap' | 'wrap-reverse';
   mh?: number;
+  mw?: number;
   opacity?: number;
   bs?: 'solid' | 'none' | 'dashed' | 'dotted';
   bc?: LightModeColors | DarkModeColors;
@@ -60,36 +61,60 @@ type Props = {
 };
 
 const Clickable = styled.Pressable<Omit<Props, 'renderItem' | 'data'>>`
-  margin: ${props => props.m?.split(' ').join('px ') ?? 0}px;
-  padding: ${props => props.p?.split(' ').join('px ') ?? 0}px;
-  border-radius: ${props => props.br?.split(' ').join('px ') ?? 0}px;
-  justify-content: ${props => props.jc || 'flex-start'};
-  align-items: ${props => props.ai || 'stretch'};
-  align-self: ${props => props.als || 'auto'};
-  flex-direction: ${props => props.fd || 'column'};
-  background-color: ${props => props.bg || props.colors?.NEUTRAL_100};
-  flex: ${props => props.flex || 'none'};
-  ${props => (props.fg ? 'flex-grow: ' + props.fg : '')};
-  border-color: ${props => props.bc || props.colors?.NEUTRAL_300};
-  gap: ${props => props.gap || 0}px;
-  border-style: ${props => props.bs || 'solid'};
-  opacity: ${props => props.opacity ?? 1};
-  position: ${props => props.position ?? 'relative'};
-  top: ${props => (props.top !== undefined ? `${props.top}px` : 'auto')};
-  left: ${props => (props.left !== undefined ? `${props.left}px` : 'auto')};
-  right: ${props => (props.right !== undefined ? `${props.right}px` : 'auto')};
-  height: ${props => (props.height ? `${props.height}px` : 'auto')};
-  min-height: ${props => (props.mh ? `${props.mh}px` : 'auto')};
-  width: ${props =>
+  margin: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.m?.split(' ').join('px ') ?? 0}px;
+  padding: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.p?.split(' ').join('px ') ?? 0}px;
+  border-radius: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.br?.split(' ').join('px ') ?? 0}px;
+  justify-content: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.jc || 'flex-start'};
+  align-items: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.ai || 'stretch'};
+  align-self: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.als || 'auto'};
+  flex-direction: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.fd || 'column'};
+  background-color: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.bg || props.colors?.TRANSPARENT};
+  flex: ${(props: Omit<Props, 'renderItem' | 'data'>) => props.flex || 'none'};
+  ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.fg ? 'flex-grow: ' + props.fg : ''};
+  border-color: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.bc || props.colors?.NEUTRAL_300};
+  gap: ${(props: Omit<Props, 'renderItem' | 'data'>) => props.gap || 0}px;
+  border-style: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.bs || 'solid'};
+  opacity: ${(props: Omit<Props, 'renderItem' | 'data'>) => props.opacity ?? 1};
+  position: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.position ?? 'relative'};
+  top: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.top !== undefined ? `${props.top}px` : 'auto'};
+  left: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.left !== undefined ? `${props.left}px` : 'auto'};
+  right: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.right !== undefined ? `${props.right}px` : 'auto'};
+  height: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.height ? `${props.height}px` : 'auto'};
+  min-height: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.mh ? `${props.mh}px` : 'auto'};
+  width: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
     typeof props.width === 'string'
       ? `${props.width}`
       : props.width
       ? `${props.width}px`
       : 'auto'};
-  bottom: ${props =>
+  max-width: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    typeof props.width === 'string'
+      ? `${props.width}`
+      : props.width
+      ? `${props.width}px`
+      : 'auto'};
+  bottom: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
     props.bottom !== undefined ? `${props.bottom}px` : 'auto'};
-  z-index: ${props => (props.zIndex ? props.zIndex : 0)};
-  ${props => {
+  z-index: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    props.zIndex ? props.zIndex : 0};
+  ${(props: Omit<Props, 'renderItem' | 'data'>) => {
     if (props.withBorder) {
       return 'border-top-width: 0; border-right-width: 0; border-bottom-width: 0.5px; border-left-width: 0';
     } else if (typeof props.bw === 'number') {
@@ -119,36 +144,85 @@ const Clickable = styled.Pressable<Omit<Props, 'renderItem' | 'data'>>`
 const Wrapper = styled.View<
   Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>
 >`
-  margin: ${props => props.m?.split(' ').join('px ') ?? 0}px;
-  padding: ${props => props.p?.split(' ').join('px ') ?? 0}px;
-  border-radius: ${props => props.br?.split(' ').join('px ') ?? 0}px;
-  justify-content: ${props => props.jc || 'flex-start'};
-  align-items: ${props => props.ai || 'stretch'};
-  align-self: ${props => props.als || 'auto'};
-  flex-direction: ${props => props.fd || 'column'};
-  background-color: ${props => props.bg || props.colors?.NEUTRAL_100};
-  flex: ${props => props.flex || 'none'};
-  flex-wrap: ${props => props.fw || 'nowrap'};
-  border-color: ${props => props.bc || props.colors?.NEUTRAL_300};
-  gap: ${props => props.gap || 0}px;
-  border-style: ${props => props.bs || 'solid'};
-  opacity: ${props => props.opacity ?? 1};
-  position: ${props => props.position ?? 'relative'};
-  top: ${props => (props.top !== undefined ? `${props.top}px` : 'auto')};
-  left: ${props => (props.left !== undefined ? `${props.left}px` : 'auto')};
-  right: ${props => (props.right !== undefined ? `${props.right}px` : 'auto')};
-  height: ${props => (props.height ? `${props.height}px` : 'auto')};
-  min-height: ${props => (props.mh ? `${props.mh}px` : 'auto')};
-  width: ${props =>
+  margin: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => props.m?.split(' ').join('px ') ?? 0}px;
+  padding: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => props.p?.split(' ').join('px ') ?? 0}px;
+  border-radius: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => props.br?.split(' ').join('px ') ?? 0}px;
+  justify-content: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => props.jc || 'flex-start'};
+  align-items: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => props.ai || 'stretch'};
+  align-self: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => props.als || 'auto'};
+  flex-direction: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => props.fd || 'column'};
+  background-color: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => props.bg || props.colors?.TRANSPARENT};
+  flex: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => props.flex || 'none'};
+  flex-wrap: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => props.fw || 'nowrap'};
+  border-color: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => props.bc || props.colors?.NEUTRAL_300};
+  gap: ${(props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>) =>
+    props.gap || 0}px;
+  border-style: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => props.bs || 'solid'};
+  opacity: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => props.opacity ?? 1};
+  position: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => props.position ?? 'relative'};
+  top: ${(props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>) =>
+    props.top !== undefined ? `${props.top}px` : 'auto'};
+  left: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => (props.left !== undefined ? `${props.left}px` : 'auto')};
+  right: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => (props.right !== undefined ? `${props.right}px` : 'auto')};
+  height: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => (props.height ? `${props.height}px` : 'auto')};
+  min-height: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => (props.mh ? `${props.mh}px` : 'auto')};
+  width: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) =>
     typeof props.width === 'string'
       ? `${props.width}`
       : props.width
       ? `${props.width}px`
       : 'auto'};
-  z-index: ${props => (props.zIndex ? props.zIndex : 0)};
-  bottom: ${props =>
-    props.bottom !== undefined ? `${props.bottom}px` : 'auto'};
-  ${props => {
+  max-width: ${(props: Omit<Props, 'renderItem' | 'data'>) =>
+    typeof props.mw === 'string'
+      ? `${props.mw}`
+      : props.mw
+      ? `${props.mw}px`
+      : 'auto'};
+  z-index: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => (props.zIndex ? props.zIndex : 0)};
+  bottom: ${(
+    props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>,
+  ) => (props.bottom !== undefined ? `${props.bottom}px` : 'auto')};
+  ${(props: Omit<Props, 'onPress' | 'disabled' | 'renderItem' | 'data'>) => {
     if (props.withBorder) {
       return 'border-top-width: 0; border-right-width: 0; border-bottom-width: 0.5px; border-left-width: 0';
     } else if (typeof props.bw === 'number') {

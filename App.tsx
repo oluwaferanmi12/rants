@@ -58,7 +58,7 @@ function Bootstrap() {
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
         barStyle={
-          Colors.TEXT_ICON_PRIMARY === '#151515'
+          String(Colors.TEXT_ICON_PRIMARY) === '#151515'
             ? 'dark-content'
             : 'light-content'
         }

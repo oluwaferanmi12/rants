@@ -90,4 +90,5 @@ export {default as At} from './At.svg';
 export {default as SMS} from './SMS.svg';
 export {default as VendorTag} from './VendorTag.svg';
 export {default as EOTag} from './EOTag.svg';
+export {default as AddWhite} from './add-white.svg';
 // export {default as } from './'

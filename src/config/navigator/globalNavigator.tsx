@@ -1,17 +1,14 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 
-import { AppContext } from '@data';
-import {
-  APP_BOTTOM_NAVIGATOR,
-  PROFILE_NAVIGATOR
-} from '@library';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { RouteTypes } from '.';
-import { AppBottomNavigator } from './appBottomNavigator';
+import {AppContext} from '@data';
+import {APP_BOTTOM_NAVIGATOR, PROFILE_NAVIGATOR} from '@library';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {RouteTypes} from '.';
+import {AppBottomNavigator} from './appBottomNavigator';
 
 const Stack = createNativeStackNavigator<RouteTypes.GlobalStackParamList>();
 
-export const GlobalNavigator = ({route}: {route: any}) => {
+export const GlobalNavigator = () => {
   const {authConfig} = useContext(AppContext);
   return (
     <Stack.Navigator

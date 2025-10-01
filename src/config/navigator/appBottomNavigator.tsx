@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {HOME_EVENTS} from '@library';
+import {CHAT_NAVIGATOR, HOME_EVENTS} from '@library';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RouteTypes} from '.';
 import {Chat} from '../../assets';
 import {useTheme} from '../../data';
-import ChatComponent from '../../screens/Chat';
+import {ChatNavigator} from './chatNavigator';
 const Tab = createBottomTabNavigator<RouteTypes.BottomNavParamList>();
 
 export const AppBottomNavigator = () => {
@@ -34,8 +34,8 @@ export const AppBottomNavigator = () => {
         options={{tabBarLabel: 'Vendors', tabBarIcon: Box}}
       /> */}
       <Tab.Screen
-        name={'Chat'}
-        component={ChatComponent}
+        name={CHAT_NAVIGATOR}
+        component={ChatNavigator}
         options={{tabBarLabel: 'Chat', tabBarIcon: Chat}}
       />
       {/* <Tab.Screen

@@ -1,26 +1,20 @@
 import React from 'react';
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {
-  FORGOT_PASSWORD,
-  INTRODUCTION,
-  LOGIN,
-  REGISTER
-} from '@library';
+import {FORGOT_PASSWORD, INTRODUCTION, LOGIN, REGISTER} from '@library';
 import {
   ForgotPassword,
   Introduction,
   Login,
   Register,
 } from '@screens/Authentication';
-import { RouteTypes } from '.';
+import {RouteTypes} from '.';
 
 const Stack =
   createNativeStackNavigator<RouteTypes.AuthenticationStackParamList>();
-  
-export const AuthenticationNavigator = () => {
 
+export const AuthenticationNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName={INTRODUCTION}

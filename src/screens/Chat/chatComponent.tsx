@@ -2,10 +2,13 @@ import {ArrowLeft} from '@assets';
 import {Button, ButtonTypes, Container, Text} from '@components';
 import {useTheme} from '@data';
 import React from 'react';
-import {Image, View} from 'react-native';
+import {Dimensions, Image, View} from 'react-native';
 import {IMAGES} from '@assets';
+import {RouteTypes} from '@config';
 
-export default function Chat() {
+const {width} = Dimensions.get('window');
+
+export default function ChatComponent({navigation}: RouteTypes.ChatProps) {
   // const signOut = async () => {
   //   await auth.signOut();
   // };
@@ -14,6 +17,7 @@ export default function Chat() {
   //   signOut();
   // }, []);
   const {Colors} = useTheme();
+
   return (
     <Container bg={Colors.NEUTRAL_100} flex={1} jc="center" ai="center">
       {/* Chat Header */}
@@ -23,17 +27,17 @@ export default function Chat() {
         fd="row"
         ai="center"
         jc="space-between"
-        bg={Colors.LINE_LIGHT}>
-        <View>
+        bg={Colors.NEUTRAL_300}>
+        <Container onPress={navigation.goBack}>
           <ArrowLeft width={24} height={24} fill={Colors.TEXT_ICON_DISABLED2} />
-        </View>
-        <Container fd="row" gap={8} bg={Colors.LINE_LIGHT} ai="center">
+        </Container>
+        <Container fd="row" gap={8} ai="center">
           <View>
             <Image source={IMAGES.groupChat} />
           </View>
 
-          <Container bg={Colors.LINE_LIGHT} gap={2}>
-            <Text color={Colors.TEXT_ICON_PRIMARY2} type="CAPTION2">
+          <Container gap={2}>
+            <Text color={Colors.TEXT_ICON_PRIMARY} type="CAPTION2">
               Attendees & Vendors
             </Text>
             <Text color={Colors.TEXT_ICON_PRIMARY2_DISABLED} type="FOOTNOTE">
@@ -66,8 +70,9 @@ export default function Chat() {
             p="12"
             br="0 12 12 12"
             ai="flex-end"
-            style={{alignSelf: 'flex-start', maxWidth: '80%'}}>
-            <Text color={Colors.TEXT_ICON_PRIMARY2} type="CAPTION3">
+            als="flex-start"
+            mw={width - 64}>
+            <Text color={Colors.TEXT_ICON_PRIMARY} type="CAPTION3">
               Thanks Olivia! Almost there. I&apos;ll work on making those
               changes you suggested and will shoot it over.
             </Text>
@@ -90,7 +95,7 @@ export default function Chat() {
             bw={1}
             ai="flex-end"
             style={{alignSelf: 'flex-end', maxWidth: '80%'}}>
-            <Text color={Colors.TEXT_ICON_PRIMARY} type="CAPTION3">
+            <Text color={Colors.TEXT_ICON_PRIMARY2} type="CAPTION3">
               Thanks Olivia! Almost there. I&apos;ll work on making those
               changes you suggested and will shoot it over.
             </Text>
@@ -108,11 +113,8 @@ export default function Chat() {
         ai="center"
         p="12 20"
         bg={Colors.NEUTRAL_300}
-        style={{
-          borderTopLeftRadius: 16,
-          gap: 8,
-          borderTopRightRadius: 16,
-        }}>
+        br="16 16 0 0"
+        gap={8}>
         <Container flex={1} bg={Colors.NEUTRAL_100} br="12" p="8 12">
           <Text color={Colors.NEUTRAL_300}>Type a message...</Text>
         </Container>

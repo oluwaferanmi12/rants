@@ -5,6 +5,8 @@ import {
   ATTENDEE_LIST,
   AUTH_NAVIGATOR,
   CHAT,
+  CHAT_NAVIGATOR,
+  CHATDETAILS,
   CREATE_ATTENDEE_SECTION,
   CREATE_PROFILE_CATEGORY,
   CUSTOMISE_EVENTS,
@@ -38,7 +40,6 @@ import {
   REGISTER,
   Section,
   SECTION_LIST,
-  SectionInfo,
   TICKET_LIST,
   TICKET_SECTIONING,
   TICKETS,
@@ -188,8 +189,18 @@ export type BottomNavParamList = {
   [EVENT_NAVIGATOR]: undefined;
   [PROFILE_NAVIGATOR]: NavigatorScreenParams<ProfileStackParamList>;
   [HOME_EVENTS]: undefined;
-  [CHAT]: undefined
+  [CHAT_NAVIGATOR]: undefined;
 };
+export type ChatNavigatorParamList = {
+  [CHAT]: undefined;
+  [CHATDETAILS]: undefined;
+};
+
+export type ChatProps = NativeStackScreenProps<ChatNavigatorParamList, 'Chat'>;
+export type ChatDetailsProps = NativeStackScreenProps<
+  ChatNavigatorParamList,
+  'CHATDETAILS'
+>;
 
 export type EventListProps = NativeStackScreenProps<
   EventStackParamList,

@@ -79,16 +79,20 @@ export type StyledTextProps = {
 };
 
 const StyledText = styled.Text<StyledTextProps>`
-  color: ${props => props.color};
-  font-size: ${props => TextVariants[props.type!].fontSize}px;
-  border-radius: ${props => props.br?.split(' ').join('px ') ?? 0}px;
-  font-family: ${props => TextVariants[props.type!].fontFamily};
-  line-height: ${props => TextVariants[props.type!].lineHeight}px;
-  margin: ${props => props.m?.split(' ').join('px ')}px;
-  padding: ${props => props.p?.split(' ').join('px ')}px;
-  text-align: ${props => props.ta};
-  opacity: ${props => props.opacity ?? 1};
-  background-color: ${props => props.bg || 'transparent'};
+  color: ${(props: StyledTextProps) => props.color};
+  font-size: ${(props: StyledTextProps) =>
+    TextVariants[props.type as keyof typeof TextVariants].fontSize}px;
+  border-radius: ${(props: StyledTextProps) =>
+    props.br?.split(' ').join('px ') ?? 0}px;
+  font-family: ${(props: StyledTextProps) =>
+    TextVariants[props.type as keyof typeof TextVariants].fontFamily};
+  line-height: ${(props: StyledTextProps) =>
+    TextVariants[props.type as keyof typeof TextVariants].lineHeight}px;
+  margin: ${(props: StyledTextProps) => props.m?.split(' ').join('px ')}px;
+  padding: ${(props: StyledTextProps) => props.p?.split(' ').join('px ')}px;
+  text-align: ${(props: StyledTextProps) => props.ta};
+  opacity: ${(props: StyledTextProps) => props.opacity ?? 1};
+  background-color: ${(props: StyledTextProps) => props.bg || 'transparent'};
 `;
 
 export const Text = ({
